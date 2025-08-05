@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const connectDB=require('./db/connectDB');
 const notfound=require('./controllers/NotFound');
+const errorController = require('./ErrorController/ErrorController');
 
 const router=require('./router/router');
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/api/task',router);
 app.use(notfound);
+app.use(errorController);
 
 const start = async () => {
 
