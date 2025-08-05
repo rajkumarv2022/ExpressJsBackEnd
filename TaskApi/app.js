@@ -1,14 +1,40 @@
 const express = require('express');
 const app=express();
-const mongoose = require('mongoose');
 require('dotenv').config();
+
+
+const connectDB=require('./db/connectDB');
+const notfound=require('./controllers/NotFound');
 
 const router=require('./router/router');
 
+app.use(express.urlencoded());
+app.use(express.json());
+
 app.use('/api/task',router);
+app.use(notfound);
 
-mongoose.connect(process.env.MONGO_URI).then(()=>console.log("MongoDb Coneected")).catch((err)=>console.log(err));
+const start = async () => {
 
-app.listen(3000, () => {
-    console.log("server listning on port 3000");
-} )
+    try
+    {
+
+      // await connectDB();
+
+        app.listen(3000, () => {
+            console.log("server listning on port 3000")
+        } )       
+
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+
+}
+
+start();
+
+// app.listen(3000, () => {
+//     console.log("server listning on port 3000");
+// } )
