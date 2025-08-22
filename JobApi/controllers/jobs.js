@@ -3,6 +3,9 @@ const getAllJobs = (req,res) => {
 }
 
 const getJobs = (req,res) => {
+
+    console.log(req.body);
+
     res.send('get single job');
 }
 
